@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
+            Spacer()
             Color(red: 19/255, green: 30/255, blue: 53/255)
                 .ignoresSafeArea()
             
@@ -18,6 +19,7 @@ struct ContentView: View {
                     .resizable()
                     .aspectRatio( contentMode: .fit)
                     .frame(width: 250)
+                    .padding(.bottom, 24)
                 SingInSignUpView()
             }
         }
@@ -25,15 +27,54 @@ struct ContentView: View {
 }
 
 struct SingInSignUpView :View{
+    @State var isLoginType: Bool = true
+    
     var body: some View{
         VStack{
             HStack{
-                Text("inicio de sesión")
-                    .colorInvert()
-                Text("Registrate")
-                    .colorInvert()
+                
+                Spacer()
+                Button("LOGIN"){
+                    print("Pantalla de inicio de sesión")
+                    isLoginType = true
+                }
+                .foregroundColor(
+                    isLoginType ? .white : .gray
+                )
+                Spacer()
+                Button("SIGN UP"){
+                    print("Pantalla de registro de sesión")
+                    isLoginType = false
+                }
+                .foregroundColor(
+                    isLoginType ? .gray : .white
+                )
+                Spacer()
+            }
+            
+            Spacer(minLength: 42)
+            
+            if isLoginType == true {
+                LoginView()
+            } else {
+                SignUpView()
             }
         }
+    }
+}
+
+struct LoginView : View {
+    
+    var body: some View{
+        Text("LoginView")
+    }
+}
+
+
+struct SignUpView : View {
+    
+    var body: some View{
+        Text("SignUpView")
     }
 }
 
