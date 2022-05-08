@@ -65,8 +65,47 @@ struct SingInSignUpView :View{
 
 struct LoginView : View {
     
+    @State var email : String = ""
+    @State var password : String = ""
+    
     var body: some View{
-        Text("LoginView")
+        ScrollView{
+//            lable
+            VStack(alignment: .leading){
+                Text("Email").foregroundColor(Color("dark-cian"))
+                // Input field email
+                ZStack(alignment: .leading){
+                    if email.isEmpty {
+                        Text("Ejemplo@gmail.com")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    TextField("", text: $email)
+                }
+                Divider()
+                    .frame( height: 0.8)
+                    .background(Color("dark-cian"))
+                    .padding(.bottom)
+                
+//   Input field password
+                Text("Password").foregroundColor(.gray)
+                // Input field email
+                ZStack(alignment: .leading){
+                    if password.isEmpty {
+                        Text("Enter the password")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    SecureField("", text: $password)
+                }
+                Divider()
+                    .frame( height: 0.8)
+                    .background(.gray)
+                    .padding(.bottom)
+
+            }.padding(.horizontal, 24)
+            
+        }
     }
 }
 
